@@ -14,6 +14,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { DemoModule } from '../pages/demo/demo.module';
 import { FormPage } from '../pages/demo/form/form';
 import { ListPage } from '../pages/demo/list/list';
+import { AccordionPage } from '../pages/demo/accordion/accordion';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ListPage } from '../pages/demo/list/list';
     HomePage,
     TabsPage,
     FormPage,
-    ListPage
+    ListPage,
+    AccordionPage
   ],
   imports: [
     BrowserModule,
@@ -34,6 +36,7 @@ import { ListPage } from '../pages/demo/list/list';
         { component: DemoPage, name: 'demo', segment: 'demo' },
         { component: FormPage, name: 'form', segment: 'form' },
         { component: ListPage, name: 'list', segment: 'list' },
+        { component: AccordionPage, name: 'accordion', segment: 'accordion' },
       ]
     })
   ],
@@ -44,7 +47,8 @@ import { ListPage } from '../pages/demo/list/list';
     HomePage,
     TabsPage,
     FormPage,
-    ListPage
+    ListPage,
+    AccordionPage
   ],
   providers: [
     StatusBar,

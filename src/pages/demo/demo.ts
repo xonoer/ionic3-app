@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormPage } from './form/form';
 import { ListPage } from './list/list';
+import { AccordionPage } from './accordion/accordion';
 
 
 @IonicPage({
@@ -26,6 +27,11 @@ export class DemoPage {
       title: '表单',
       id: 1,
       page: FormPage
+    },
+    {
+      title: '列表折叠&搜索（前端过滤）',
+      id: 2,
+      page: AccordionPage
     }
   ]
   ionViewDidLoad() {

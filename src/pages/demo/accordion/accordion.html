@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Contact
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div class="search-box">
+      <ion-searchbar class="input-box" placeholder="请输入搜索关键词" (ionInput)="updateList($event)" [(ngModel)]="searchCon"></ion-searchbar>
+    </div>
+  
+    <ion-list class="list">
+      <ion-item [ngSwitch]="status" class="contactList" (click)="contactAccordion()">联系人
+        <ion-icon *ngSwitchCase="0" name="arrow-down"></ion-icon>
+        <ion-icon *ngSwitchCase="1" name="arrow-up"></ion-icon>
+      </ion-item>
+      
+      <ion-card [hidden]="!contactShow">
+        <div *ngIf="list.length > 0">
+          <ion-card-content class="contactLi" *ngFor="let item of showList; let i= index">
+            <p class="contName">
+              <span>{{item.contName}}</span>
+              <span>
+                <a class="tel-call" [href]="'tel:' + item.mobilePhone">{{ item.mobilePhone }}</a>
+              </span>
+            </p>
+            <p class="groupagencyName">{{item.groupagencyName}}</p>
+          </ion-card-content>
+        </div>
+        <div *ngIf="showList.length == 0">
+          <ion-card-content>
+            <p style="width: 100%; text-align: center;">未搜索到结果...</p>
+          </ion-card-content>
+        </div>
+      </ion-card>
+    </ion-list>
+</ion-content>

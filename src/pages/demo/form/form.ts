@@ -93,5 +93,51 @@ export class FormPage {
     }
   }
 
+  public addContact() {
+    this.model.contacts.push({relation: '', name: '', phone: ''});
+  }
+
+  removeContact(contact) {
+    let doRemove = () => {
+      let contacts = this.model.contacts;
+      contacts.splice(contacts.indexOf(contact), 1);
+    };
+    if (!contact.relation && !contact.name && !contact.phone) {
+      doRemove();
+    } else {
+      // this.nativeService.alert(null, null, '已填写内容，确认移除？', () => {
+      //   doRemove();
+      // });
+    }
+  }
+
+  setData() {
+    this.model = {
+      username: 'yanxiaojun617',
+      password: '123456',
+      name: '张三',
+      tel: '13071285290',
+      phone: '18688498342',
+      birthday: '1995-09-09',
+      isMarried: false,
+      education: 4,
+      contacts: [{
+        relation: '朋友',
+        name: '李四',
+        phone: '18670098124'
+      }],
+      sex: 1,
+      hobby: [2, 3],
+      games: [1, 3],
+      tooth: 1,
+      introduction: '注意：使用div模拟textarea从而实现根据内容多少自动改变文本域高度。https://github.com/KostyaTretyak/ng-contenteditable'
+    };
+  }
+
+  onSubmit() {
+    console.log('提交保存的数据', this.model);
+    // this.nativeService.alert('提交成功', '在控制台打印了表单数据');
+  }
+
 
 }

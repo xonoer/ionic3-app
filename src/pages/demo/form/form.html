@@ -6,12 +6,10 @@
 
 
 <ion-content>
-  <!-- <form (ngSubmit)="onSubmit()" #ngForm="ngForm" class="ngForm"> -->
-    <div>
-
+  <form (ngSubmit)="onSubmit()" #ngForm="ngForm" class="ngForm">
     <ion-list>
       <ion-item>
-        <ion-label required>用户名</ion-label>
+        <ion-label required>用户名 <span class="redMark">*</span></ion-label>
         <ion-input type="text" name="username" required placeholder="请输入用户名（必填）" [(ngModel)]="model.username" 
           #username="ngModel" pattern="[A-Za-z0-9]{4,20}" autocomplete="off"></ion-input>
       </ion-item>
@@ -21,7 +19,7 @@
       </div>
 
       <ion-item>
-        <ion-label required>密码</ion-label>
+        <ion-label required>密码 <span class="redMark">*</span></ion-label>
         <ion-input type="password" name="password" required placeholder="请输入密码（必填）" [(ngModel)]="model.password"
           #password="ngModel" pattern=".{6,20}" autocomplete="off"></ion-input>
       </ion-item>
@@ -31,7 +29,7 @@
       </div>
 
       <ion-item>
-        <ion-label required>手机号码</ion-label>
+        <ion-label required>手机号码 <span class="redMark">*</span></ion-label>
         <ion-input type="number" name="tel" required placeholder="请输入11位手机号码（必填）" [(ngModel)]="model.tel" #tel="ngModel"
           pattern="1[0-9]{10}"></ion-input>
       </ion-item>
@@ -85,13 +83,8 @@
       <ion-item>
         <ion-label>学历-alert框改为无按钮形式</ion-label>
         <ion-input name="education" placeholder="请选择学历" [(ngModel)]="educationItem" (click)="educationAlert()"></ion-input>
-        <!-- <ion-select placeholder="请选择学历" [(ngModel)]="educationItem" (click)="educationAlert()"></ion-select> -->
-        <!-- <div (click)="educationAlert()">
-          <input type="text" placeholder="请输入营销方式" value="" [(ngModel)]="educationItem" disabled>
-          <ion-icon name="arrow-forward"></ion-icon>
-        </div> -->
-     </ion-item>
-     
+    </ion-item>
+    
       <ion-item>
         <ion-label>性别</ion-label>
         <ion-select name="sex" placeholder="请选择性别" [(ngModel)]="model.sex" interface="popover">
@@ -119,7 +112,7 @@
         <div item-content class="form-item-content">
           <div class="form-checkbox" *ngFor="let item of hobby" tappable (click)="hobbyCheckboxClick(item.value)">
             <ion-icon [name]="model.hobby&&model.hobby.indexOf(item.value)>-1?'checkbox':'square-outline'"
-                      color="primary"></ion-icon>
+              color="primary"></ion-icon>
             <span>{{item.name}}</span>
           </div>
         </div>
@@ -132,10 +125,30 @@
         </ion-select>
       </ion-item>
 
-    </ion-list>
-  </div>
+      <ion-item class="contacts">
+        <div>添加紧急联系人</div>
+        <ion-row>
+          <ion-col col-2 (click)="addContact()"><ion-icon name="add" color="primary"></ion-icon></ion-col>
+          <ion-col col-3>关系</ion-col>
+          <ion-col col-3>联系人姓名</ion-col>
+          <ion-col col-4>联系人电话</ion-col>
+        </ion-row>
+        <ion-row  *ngFor="let item of model.contacts;let i = item;">
+          <ion-col col-2 (click)="removeContact(item)"><ion-icon name="remove" color="danger"></ion-icon></ion-col>
+          <ion-col col-3><input type="text" class="contacts-input" name="relation_{{i}}" [(ngModel)]="item.relation"></ion-col>
+          <ion-col col-3><input type="text" class="contacts-input" name="name_{{i}}" [(ngModel)]="item.name"></ion-col>
+          <ion-col col-4><input type="number" class="contacts-input" name="phone_{{i}}" [(ngModel)]="item.phone"></ion-col>
+        </ion-row>
+      </ion-item>
 
-  <!-- </form> -->
+    </ion-list>
+
+    <div padding-horizontal>
+      <button type="reset" ion-button outline (click)="reset();ngForm.reset()">清空</button>
+      <button type="button" ion-button outline (click)="setData()">设置数据</button>
+      <button type="submit" ion-button [disabled]="!ngForm.form.valid">提交</button>
+    </div>
+  </form>
 
 </ion-content>
   
